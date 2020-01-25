@@ -78,7 +78,7 @@
             fxLayoutAlign.xs="end center" fxLayoutGap="10px">
             <div style="width: 48px; height: 48px; border: 1px solid #ff0000; border-radius: 24px; background-color: #ff0000;"
                 fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
-                <button mat-icon-button (click)="deleteVehicleEntry(vehicleData.licence_plate_number)">
+                <button mat-icon-button (click)="deleteVehicleEntry(vehicleData ? vehicleData.licence_plate_number : null)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
