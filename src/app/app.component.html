@@ -1,0 +1,15 @@
+<div fxLayout="column" style="height: 100%;">
+  <div style="height: 50px; background-color: #3f51b5; color: white; font-weight: 500; font-size: 2rem;"
+    fxLayoutAlign="center center">
+    Parking Management
+  </div>
+  <div style="height: calc(100% - 99px); padding-top: 2px;">
+    <div>
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link *ngFor="let link of links" (click)="activeLink = link.path" [active]="activeLink == link.path"
+          [routerLink]="link.path"> {{link.label}} </a>
+      </nav>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
