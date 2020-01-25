@@ -64,5 +64,14 @@ export class VehicleDetailComponent implements OnInit {
       this.resetVehicleForm();
     }
   }
+  
+  cancelEdit() {
+    if (this.vehicleData) {
+      this.vehicleEntryForm.setValue(this.vehicleData);
+      this.mode = 'display';
+    } else {
+      this.resetVehicleForm();
+    }
+  }
 
 }

@@ -77,9 +77,15 @@
         <div fxLayout="row" class="vehicle-detail-row" style="background-color: white; color: white;" fxLayoutAlign="end center"
             fxLayoutAlign.xs="end center" fxLayoutGap="10px">
             <div style="width: 48px; height: 48px; border: 1px solid #ff0000; border-radius: 24px; background-color: #ff0000;"
-                fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+                fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="mode === 'display'">
                 <button mat-icon-button (click)="deleteVehicleEntry(vehicleData ? vehicleData.licence_plate_number : null)">
                     <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+            <div style="width: 48px; height: 48px; border: 1px solid #ff0000; border-radius: 24px; background-color: #ff0000;"
+                fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="mode === 'add'">
+                <button mat-icon-button (click)="cancelEdit()">
+                    <mat-icon>cancel</mat-icon>
                 </button>
             </div>
             <div style="width: 48px; height: 48px; border: 1px solid #3f51b5; border-radius: 24px; background-color: #3f51b5;"
