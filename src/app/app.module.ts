@@ -4,18 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatCheckboxModule, MatInputModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatCheckboxModule, MatInputModule, MatProgressSpinnerModule, MatTabsModule, MatIconModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
+import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VehicleDetailsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    VehicleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,11 @@ import { RegistrationComponent } from './registration/registration.component';
     MatCardModule,
     MatProgressSpinnerModule,
     MatTabsModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule,
     HttpClientModule
   ],
   providers: [],

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../vehicle.service';
+import { RegistrationDetail } from '../models/vehicle-details';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -13,7 +15,10 @@ export class VehicleDetailsComponent implements OnInit {
   logData = "";
   vehicles = [];
   isLoading = false;
-  constructor(private vehicleService: VehicleService) {}
+  constructor(private vehicleService: VehicleService,
+    private router: Router) {
+      this.vehicleService.currentRoute.next(this.router.url.slice(1));
+    }
 
   ngOnInit() {}
 
@@ -68,15 +73,5 @@ export class VehicleDetailsComponent implements OnInit {
         this.isLoading = false;
       });
   }
-}
-
-export interface RegistrationDetail {
-  licence_plate_number: string;
-  licence_plate_registration_details: {
-    licence_plate_number: string;
-    registered_person_name: string;
-    registered_person_flat_number: string;
-    registered_person_phone_number: string;
-  };
 }
 

@@ -1,1 +1,36 @@
-<p>registration works!</p>
+<div style="width: 100%; height: 100%;" fxFlexAlign="stretch" fxLayout="column" fxLayout.xs="column"
+    fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+    <div style="width: 100%; height: auto; background-color: white; margin: 5px 0 5px 0;" class="vehicle-detail-row"
+        fxLayout="row" fxLayout.xs="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+        <div fxFlex="25">
+
+        </div>
+        <div fxFlex="50" fxLayoutAlign="center center" fxLayoutAlign.xs="center center"
+            style="color: #3f51b5; font-size: 1.5rem; font-weight: bold;    ">
+            Registered Users
+        </div>
+        <div fxFlex="25" fxLayoutAlign="end center" fxLayoutAlign.xs="end center">
+            <div style="width: 48px; height: 48px; border: 1px solid #00ff00; border-radius: 24px; background-color: #00ff00;"
+                fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+                <button mat-icon-button (click)="isUserAddInProgress = !isUserAddInProgress">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isUserAddInProgress" style="width: 100%;" fxLayout="column" fxLayoutAlign="start center"
+        fxLayoutAlign.xs="start center">
+        <app-vehicle-detail mode="add" (valueUpdated)="refreshView($event)"></app-vehicle-detail>
+    </div>
+    <div style="width: 100%; height: auto; margin: 0; padding: 2px; overflow: auto;" fxLayout="column"
+        fxLayoutAlign="start center" fxLayoutAlign.xs="start center" *ngIf="!isLoading">
+        <div *ngFor="let vehicle of vehicles" style="width: 100%;" fxLayout="column" fxLayoutAlign="start center"
+            fxLayoutAlign.xs="start center">
+            <app-vehicle-detail [vehicleData]="vehicle" [mode]="'display'" (valueUpdated)="refreshView($event)"></app-vehicle-detail>
+        </div>
+    </div>
+    <div style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="center center"
+        fxLayoutAlign.xs="center center" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

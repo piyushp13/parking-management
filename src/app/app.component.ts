@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { VehicleService } from "./vehicle.service";
 
 @Component({
@@ -6,7 +6,7 @@ import { VehicleService } from "./vehicle.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "parking-management";
   isImageSelected = false;
   formData: FormData = new FormData();
@@ -18,7 +18,13 @@ export class AppComponent {
     {path: 'register', label: 'Registration'},
   ];
   activeLink = this.links[0].path;
-  constructor(private vehicleService: VehicleService) {}
+  constructor(private vehicleService: VehicleService) {
+      this.vehicleService.currentRoute.subscribe(currentRoute => {
+        this.activeLink = currentRoute;
+      });
+  }
+
+  ngOnInit() {}
 
   showImagePreview(event) {
     const imageFile = event.target.files ? event.target.files[0] : null;

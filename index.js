@@ -11,10 +11,11 @@ const cors = require('cors');
 const app = express();
 const fs = require('fs');
 const https = require('https');
+const http = require('http');
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.static(`${__dirname}/dist/pixel-perfect-deployment`));
+app.use(express.static(`${__dirname}/dist`));
 
 const options = {
   key: fs.readFileSync(__dirname + '/localhost-rsa-key.pem'),
@@ -22,13 +23,13 @@ const options = {
   ca: fs.readFileSync(__dirname + '/localhost-rsa-chain.pem')
 };
 
-const server = https.createServer(options, app);
+const server = http.createServer();
 server.listen(PORT, () => {
     console.log(`Server running on PORT ${PORT}`);
 }); 
 
 app.use(cors());
-app.use(express.static(`${__dirname}/dist/pixel-perfect-deployment`));
+app.use(express.static(`${__dirname}/dist`));
 
 app.get('/extension', (req, res) => {
     const headers = req.headers;
