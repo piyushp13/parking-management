@@ -50,12 +50,13 @@ export class VehicleDetailsComponent implements OnInit {
         imgElement.src = result;
         this.isImageSelected = true;
         setTimeout(() => {
-          imageContainer.appendChild(imgElement);
           if (this.formData.has("image_file")) {
-            this.formData.append("image_file", imageFile);
+            imageContainer.removeChild(document.querySelector('img'));
+            imageContainer.appendChild(imgElement);
           } else {
-            this.formData.set("image_file", imageFile);
+            imageContainer.appendChild(imgElement);
           }
+          this.formData.set("image_file", imageFile);
           this.formData.set("id", new Date().getTime().toString());
         }, 0);
       };
@@ -67,9 +68,7 @@ export class VehicleDetailsComponent implements OnInit {
     this.vehicleService
       .getVehicleDetails(this.formData)
       .subscribe((result: { id: string; registration_details: RegistrationDetail[] }) => {
-        for (let i = 0; i < result.registration_details.length; i++) {
-          this.vehicles.push(result.registration_details[i]);
-        }
+        this.vehicles = result.registration_details;
         this.isLoading = false;
       });
   }
