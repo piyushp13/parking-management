@@ -5,9 +5,12 @@ const FormData = require('form-data');
 const axios = require('axios');
 const multer = require('multer');
 const fs = require('fs');
+if (!fs.existsSync(`${__dirname}/uploads`)) {
+    fs.mkdirSync(`${__dirname}/uploads`);
+}
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'uploads')
+      cb(null, `${__dirname}/uploads`)
     },
     filename: (req, file, cb) => {
       cb(null, file.filename || file.originalname)
@@ -62,7 +65,7 @@ app.put("/LicencePlateRegistration/register", (req, res) => {
 
 app.post("/LicencePlateRecognition/file/isregistered_v2", upload.single('image_file'), async (req, res) => {
     const request = req.body;
-    request['base64ImageString'] = await base64_encode(`uploads/${req.file.originalname}`);
+    request['base64ImageString'] = await base64_encode(`${__dirname}/uploads/${req.file.originalname}`);
     axios({
         method: 'post',
         url: baseUrl + req.url.replace('file', 'base64'),
