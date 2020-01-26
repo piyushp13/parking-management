@@ -3,13 +3,13 @@
     <mat-card class="vehicle-detail-card" fxLayout="column" fxLayoutGap="4px" fxLayoutAlign="start center"
         fxLayoutAlign.xs="start center">
         <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-            <div fxFlex="45">
+            <div fxFlex="37">
                 Registered No.
             </div>
-            <div>
+            <div fxFlex="3">
                 :&nbsp;&nbsp;
             </div>
-            <div fxFlex="54" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+            <div fxFlex="60" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
                 <mat-form-field floatLabel="never" *ngIf="mode === 'add'">
                     <input formControlName="licence_plate_number" ngDefaultControl matInput placeholder="Registered No."
                         #licencePlate>
@@ -17,17 +17,17 @@
                         Field name is required
                     </mat-error>
                 </mat-form-field>
-                <span *ngIf="mode === 'display'">{{vehicleEntryForm.get('licence_plate_number').value}}</span>
+                <span *ngIf="['display', 'recognize'].includes(mode)">{{vehicleEntryForm.get('licence_plate_number').value}}</span>
             </div>
         </div>
         <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-            <div fxFlex="45">
+            <div fxFlex="37">
                 Name
             </div>
-            <div>
+            <div fxFlex="3">
                 :&nbsp;&nbsp;
             </div>
-            <div fxFlex="54" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+            <div fxFlex="60" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
                 <mat-form-field floatLabel="never" *ngIf="mode === 'add'">
                     <input formControlName="registered_person_name" ngDefaultControl matInput placeholder="Name"
                         #registeredName>
@@ -35,17 +35,17 @@
                         Field name is required
                     </mat-error>
                 </mat-form-field>
-                <span *ngIf="mode === 'display'">{{vehicleEntryForm.get('registered_person_name').value}}</span>
+                <span *ngIf="['display', 'recognize'].includes(mode)">{{vehicleEntryForm.get('registered_person_name').value}}</span>
             </div>
         </div>
         <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-            <div fxFlex="45">
+            <div fxFlex="37">
                 Flat No.
             </div>
-            <div>
+            <div fxFlex="3">
                 :&nbsp;&nbsp;
             </div>
-            <div fxFlex="54" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+            <div fxFlex="60" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
                 <mat-form-field floatLabel="never" *ngIf="mode === 'add'">
                     <input formControlName="registered_person_flat_number" ngDefaultControl matInput
                         placeholder="Flat No." #flatNumber>
@@ -53,17 +53,17 @@
                         Field name is required
                     </mat-error>
                 </mat-form-field>
-                <span *ngIf="mode === 'display'">{{vehicleEntryForm.get('registered_person_flat_number').value}}</span>
+                <span *ngIf="['display', 'recognize'].includes(mode)">{{vehicleEntryForm.get('registered_person_flat_number').value}}</span>
             </div>
         </div>
         <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-            <div fxFlex="45">
+            <div fxFlex="37">
                 Phone No.
             </div>
-            <div>
+            <div fxFlex="3">
                 :&nbsp;&nbsp;
             </div>
-            <div fxFlex="54" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+            <div fxFlex="60" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
                 <mat-form-field floatLabel="never" *ngIf="mode === 'add'">
                     <input formControlName="registered_person_phone_number" ngDefaultControl matInput
                         placeholder="Phone No." #phoneNumber>
@@ -71,13 +71,13 @@
                         Field name is required
                     </mat-error>
                 </mat-form-field>
-                <span *ngIf="mode === 'display'">{{vehicleEntryForm.get('registered_person_phone_number').value}}</span>
+                <span *ngIf="['display', 'recognize'].includes(mode)">{{vehicleEntryForm.get('registered_person_phone_number').value}}</span>
             </div>
         </div>
         <div fxLayout="row" class="vehicle-detail-row" style="background-color: white; color: white;" fxLayoutAlign="end center"
-            fxLayoutAlign.xs="end center" fxLayoutGap="10px">
+            fxLayoutAlign.xs="end center" fxLayoutGap="10px" *ngIf="mode !== 'recognize'">
             <div style="width: 48px; height: 48px; border: 1px solid #ff0000; border-radius: 24px; background-color: #ff0000;"
-                fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="mode === 'display'">
+                fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="['display', 'recognize'].includes(mode)">
                 <button mat-icon-button (click)="deleteVehicleEntry(vehicleData ? vehicleData.licence_plate_number : null)">
                     <mat-icon>delete</mat-icon>
                 </button>
@@ -89,7 +89,7 @@
                 </button>
             </div>
             <div style="width: 48px; height: 48px; border: 1px solid #3f51b5; border-radius: 24px; background-color: #3f51b5;"
-                fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="mode === 'display'">
+                fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="['display', 'recognize'].includes(mode)">
                 <button mat-icon-button (click)="mode = 'add'">
                     <mat-icon>edit</mat-icon>
                 </button>

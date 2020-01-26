@@ -19,6 +19,7 @@ export class VehicleDetailComponent implements OnInit {
     private snackBar: MatSnackBar,) { }
 
   ngOnInit() {
+    console.log(this.vehicleData);
     this.vehicleEntryForm = this.fb.group({
       licence_plate_number: [this.vehicleData ? this.vehicleData.licence_plate_number : '', Validators.required],
       registered_person_name: [this.vehicleData ? this.vehicleData.registered_person_name : '', Validators.required],

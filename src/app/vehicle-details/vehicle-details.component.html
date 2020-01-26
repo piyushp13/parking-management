@@ -1,86 +1,53 @@
-<div style="width: 100%; height: 100%;" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="center start">
-    <div fxFlex="50" fxFlexAlign="stretch" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
-      <mat-card style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-        <label for="vehicle-image" style="width: 90%; height: 75%; border: 2px dashed aqua;" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
-          <div id="image-preview" style="width: 100%; height: 100%;" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
-            <span *ngIf="!isImageSelected">Tap to upload an image</span>
-          </div>
-          <input type="file" name="vehicle-image" id="vehicle-image" accept=".png,.jpeg,.jpg" style="width: 0; height: 0;" (change)="showImagePreview($event)">
+<div style="width: 100%; height: 100%;" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center"
+  fxLayoutAlign.xs="center start">
+  <div fxFlex="50" fxFlexAlign="stretch" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center"
+    fxLayoutAlign.xs="center center">
+    <mat-card style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="start center"
+      fxLayoutAlign.xs="start center">
+      <label for="vehicle-image" style="width: 90%; height: 75%; border: 2px dashed aqua;" fxLayout="column"
+        fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+        <div id="image-preview" style="width: 100%; height: 100%;" fxLayout="column" fxLayout.xs="column"
+          fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+          <span *ngIf="!isImageSelected">Tap to upload an image</span>
+        </div>
+        <input type="file" name="vehicle-image" id="vehicle-image" accept=".png,.jpeg,.jpg" style="width: 0; height: 0;"
+          (change)="showImagePreview($event)">
       </label>
       <div style="width: 100%; height: 25%; display: flex; align-items: center; justify-content: center;">
-          <button mat-raised-button color="primary" (click)="getDetails()">Get Details</button>
+        <button mat-raised-button color="primary" (click)="getDetails()">Get Details</button>
       </div>
-      </mat-card>
-    </div>
-    <div fxFlex="50" fxFlexAlign="stretch" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center" style="max-height: 100%; overflow: auto;">
-      <div style="width: 96%; height: auto; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start center" *ngIf="!isLoading">
-        <div *ngFor="let vehicle of vehicles" style="width: 100%;" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-          <mat-card class="vehicle-detail-card" fxLayout="column" fxLayoutGap="4px" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-            <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-              <div fxFlex="45">
-                Recognised No.
-              </div>
-              <div>
-                :&nbsp;&nbsp;
-              </div>
-              <div fxFlex="54">
-                {{vehicle.licence_plate_number}}
-              </div>
+    </mat-card>
+  </div>
+  <div fxFlex="50" fxFlexAlign="stretch" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center"
+    fxLayoutAlign.xs="center center" style="max-height: 100%; overflow: auto;">
+    <div style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="start center"
+      fxLayoutAlign.xs="start center" *ngIf="!isLoading">
+      <div *ngFor="let vehicle of vehicles" style="width: 100%;" fxLayout="column" fxLayoutAlign="start center"
+        fxLayoutAlign.xs="start center">
+        <mat-card class="vehicle-detail-card" fxLayout="column" fxLayoutGap="4px" fxLayoutAlign="start center"
+          fxLayoutAlign.xs="start center">
+          <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+            <div fxFlex="37">
+              Recognised No.
             </div>
-            <div *ngIf="vehicle.licence_plate_registration_details.licence_plate_number" fxLayoutGap="4px" style="width: 100%;" fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-            <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-              <div fxFlex="45">
-                Registered No.
-              </div>
-              <div>
-                :&nbsp;&nbsp;
-              </div>
-              <div fxFlex="54">
-                {{vehicle.licence_plate_registration_details.licence_plate_number}}
-              </div>
+            <div fxFlex="3">
+              :&nbsp;&nbsp;
             </div>
-            <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-              <div fxFlex="45">
-                Name
-              </div>
-              <div>
-                :&nbsp;&nbsp;
-              </div>
-              <div fxFlex="54">
-                {{vehicle.licence_plate_registration_details.registered_person_name}}
-              </div>
-            </div>
-            <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-              <div fxFlex="45">
-                Flat No.
-              </div>
-              <div>
-                :&nbsp;&nbsp;
-              </div>
-              <div fxFlex="54">
-                {{vehicle.licence_plate_registration_details.registered_person_flat_number}}
-              </div>
-            </div>
-            <div fxLayout="row" class="vehicle-detail-row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
-              <div fxFlex="45">
-                Phone No.
-              </div>
-              <div>
-                :&nbsp;&nbsp;
-              </div>
-              <div fxFlex="54">
-                {{vehicle.licence_plate_registration_details.registered_person_phone_number}}
-              </div>
+            <div fxFlex="59">
+              {{vehicle.licence_plate_number}}
             </div>
           </div>
-          <div *ngIf="!vehicle.licence_plate_registration_details.licence_plate_number" style="width: 100%;" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+          <app-vehicle-detail *ngIf="vehicle.licence_plate_registration_details.licence_plate_number" [vehicleData]="vehicle.licence_plate_registration_details" mode="recognize"></app-vehicle-detail>
+          <div *ngIf="!vehicle.licence_plate_registration_details.licence_plate_number" style="width: 100%;"
+            fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
             Vehicle is not registered!
           </div>
-          </mat-card>
-        </div>
-      </div>
-      <div style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center" *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
+        </mat-card>
       </div>
     </div>
+    <div style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="center center"
+      fxLayoutAlign.xs="center center" *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
+</div>
