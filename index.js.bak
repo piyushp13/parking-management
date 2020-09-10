@@ -1,0 +1,18 @@
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const http = require('http');
+const httpProxy = require('http-proxy');
+
+const PORT = process.env.PORT || 3000;
+const baseUrl = 'http://3.6.121.146:9494';
+
+app.use(cors());
+app.use(express.static(`${__dirname}/dist`));
+
+//
+// Create your proxy server and set the target in the options.
+//
+httpProxy.createProxyServer({target: baseUrl}).listen(PORT, () => {
+    console.log(`Server running on PORT ${PORT}`);
+});

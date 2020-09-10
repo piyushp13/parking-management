@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { VehicleDetail } from './models/vehicle-details';
+import { VehicleDetail, RecognitionRequest } from './models/vehicle-details';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,14 @@ export class VehicleService {
   public currentRoute = new BehaviorSubject('details');
   constructor(private _http: HttpClient) { }
 
-  getVehicleDetails(formData: FormData) {
+  getVehicleDetailsAsFormData(formData: FormData) {
     const vehicleDetailsUrl = `${environment.restUrl}/LicencePlateRecognition/file/isregistered_v2`;
     return this._http.post(vehicleDetailsUrl, formData);
+  }
+
+  getVehicleDetails(recognitionRequest: RecognitionRequest) {
+    const vehicleDetailsUrl = `${environment.restUrl}/LicencePlateRecognition/base64/isregistered_v2`;
+    return this._http.post(vehicleDetailsUrl, recognitionRequest);
   }
 
   getRegisteredVehiclesList() {

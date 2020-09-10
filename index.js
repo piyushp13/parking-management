@@ -80,6 +80,16 @@ app.post("/LicencePlateRecognition/file/isregistered_v2", upload.single('image_f
     });
 });
 
+app.post("/LicencePlateRecognition/base64/isregistered_v2", (req, res) => {
+    axios.post(baseUrl + req.url, req.body, {'Content-Type': 'application/json'})
+    .then(response => {
+        res.end(JSON.stringify(response.data));
+    }).catch(err => {
+        console.log('Error: ', err);
+        res.end('Error calling server');
+    });
+});
+
 app.delete("/LicencePlateRegistration/:licencePlateNumber", (req, res) => {
     axios.delete(baseUrl + req.url)
     .then(response => {

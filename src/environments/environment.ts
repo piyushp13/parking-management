@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  restUrl: `http://3.6.121.146:9494`
+  restUrl: `http://localhost:3000`
 };
 
 /*

@@ -9,3 +9,8 @@ export interface VehicleDetail {
     registered_person_flat_number: string;
     registered_person_phone_number: string;
 }
+
+export interface RecognitionRequest {
+    id: string;
+    base64ImageString: string;
+}
