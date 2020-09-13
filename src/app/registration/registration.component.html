@@ -23,11 +23,11 @@
         fxLayoutAlign.xs="start center">
         <app-vehicle-detail mode="add" (valueUpdated)="refreshView($event)"></app-vehicle-detail>
     </div>
-    <div style="width: 100%; height: auto; margin: 0; padding: 2px; overflow: auto;" fxLayout="column"
-        fxLayoutAlign="start center" fxLayoutAlign.xs="start center" *ngIf="!isLoading">
-        <div *ngFor="let vehicle of vehicles" style="width: 100%;" fxLayout="column" fxLayoutAlign="start center"
-            fxLayoutAlign.xs="start center">
-            <app-vehicle-detail [vehicleData]="vehicle" [mode]="'display'" (valueUpdated)="refreshView($event)"></app-vehicle-detail>
+    <div style="width: 100%; height: auto; margin: 0; padding: 2px; overflow: auto;" fxLayout="row wrap"
+        fxLayoutAlign="start center" fxLayoutAlign.xs="start center" *ngIf="!isLoading" fxLayoutGap="5px">
+        <div *ngFor="let vehicle of vehicles" fxFlex="33" fxLayout="column" fxLayoutAlign="start center"
+            fxLayoutAlign.xs="start center">           
+                <app-vehicle-detail [vehicleData]="vehicle" [mode]="'display'" (valueUpdated)="refreshView($event)"></app-vehicle-detail>
         </div>
     </div>
     <div style="width: 96%; height: 96%; margin: 0; padding: 2px;" fxLayout="column" fxLayoutAlign="center center"

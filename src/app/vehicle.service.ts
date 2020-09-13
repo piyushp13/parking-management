@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { VehicleDetail, RecognitionRequest } from './models/vehicle-details';
 
 @Injectable({
@@ -21,9 +21,69 @@ export class VehicleService {
     return this._http.post(vehicleDetailsUrl, recognitionRequest);
   }
 
-  getRegisteredVehiclesList() {
+  getRegisteredVehiclesList(): Observable<VehicleDetail[]> {
     const registeredVehiclesUrl = `${environment.restUrl}/LicencePlateRegistration/register`;
-    return this._http.get(registeredVehiclesUrl);
+    return of([{
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    },{
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    },{
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }, {
+      licence_plate_number: "dkashk",
+      registered_person_name: "kdsh kdhs",
+      registered_person_flat_number: "dash",
+      registered_person_phone_number: "7760967684"
+    }]);
   }
 
   resgisterVehicle(vehicleRegistrationData: VehicleDetail) {
